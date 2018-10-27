@@ -1,0 +1,114 @@
+﻿<div class="container margin-top-lg" ng-controller="UpdateParkerController">
+    <span ng-if="!editorView.$valid" class="alert-info">{{myFormStatus}}</span>
+
+    <h2 class="col-sm-offset-2">Update User Account</h2>
+    <h5 class="col-sm-offset-2"><span class="red superscript">* - Required Fields</span></h5>
+    <br />
+        
+    <form name="editorView" class="form-horizontal margin-top-lg" ng-submit="submitForm(editorView.$valid)" novalidate>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">First Name <span class="red superscript">*</span></label>
+            <div class="col-sm-4">
+                <input class="form-control" name="FirstName" required ng-maxlength="32" ng-model="newUser.FirstName" />
+                <span class="label label-danger" ng-show="editorView.FirstName.$error.maxlength">
+                    Name must be 32 characters max!
+                </span>
+            </div>
+
+            <label class="col-sm-2 control-label">Last Name<span class="red superscript">*</span></label>
+            <div class="col-sm-4">
+                <input class="form-control" name="LastName" required ng-maxlength="32" ng-model="newUser.LastName" />
+                <span class="label label-danger" ng-show="editorView.LastName.$error.maxlength">
+                    Name must be 32 characters max!
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Address</label>
+            <div class="col-sm-10">
+                <input class="form-control" name="FirstName" ng-maxlength="255" ng-model="newUser.Address" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Email Address <span class="red superscript">*</span></label>
+            <div class="col-sm-10">
+                <input class="form-control" name="EmailAddress" required ng-maxlength="255" ng-model="newUser.EmailAddress" ng-pattern="matchEmailAddress" />
+                <span class="label label-danger" ng-show="editorView.EmailAddress.$error.maxlength">
+                    Email must be 255 characters max!
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Start Date</label>
+            <div class="col-sm-4">
+                <div class="input-group date" id="datetimepicker1">
+                    <input type="text" class="form-control" ng-model="newUser.StartDate" readonly />
+                </div>
+            </div>
+
+            <label class="col-sm-2 control-label">Phone</label>
+            <div class="col-sm-4">
+                <input class="form-control phone_us" name="Phone" ng-maxlength="12" ng-model="newUser.Phone" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-1 control-label col-sm-offset-1">City</label>
+            <div class="col-sm-2">
+                <input class="form-control" name="City" ng-maxlength="32" ng-model="newUser.City" />
+                <span class="label label-danger" ng-show="editorView.City.$error.maxlength">
+                    City must be 32 characters max!
+                </span>
+            </div>
+            <label class="col-sm-1 control-label">State</label>
+            <div class="col-sm-1">
+                <select class="select200 form-control input-sm" name="State"
+                        ng-init="itemAddr=states[stateAddressIndex]"
+                        ng-model="newUser.State"
+                        ng-options="itemAddr.value as itemAddr.name for itemAddr in states track by itemAddr.value">
+
+                    <option value="">-- Select --</option>
+                </select>
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <label class="col-sm-2 control-label">Zip Code</label>
+            <div class="col-sm-2">
+                <input class="form-control" name="ZipCode" ng-maxlength="12" ng-model="newUser.ZipCode" />
+            </div>
+        </div>
+        <div class="form-group margin-top-lg">
+            <div class="col-sm-12 col-sm-offset-4 btn-group">
+
+                <button type="submit" class="btn btn-primary margin-bottom-lg" ng-disabled="!editorView.$valid" ng-click="saveEdit">Submit</button>
+
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-11 alert alert-success" ng-show="hasBeenUpdated">
+                    <span>Thank you. Your account has been updated.</span>
+                </div>
+            </div>
+        </div>
+
+    </form>
+
+    <div class="row alert alert-success" ng-show="showSuccescAlert">
+        <span><strong>Success</strong>&nbsp;New Parker successfully added.</span>
+    </div>
+    <div class="row alert alert-danger" ng-show="showErrorAlert">
+        <span><strong>Error</strong>&nbsp;An error occurred while processing.</span>
+    </div>
+</div>
+<script type="text/javascript">
+
+    $(function() {
+        $('.phone_us').mask('000-000-0000');
+    });
+</script>

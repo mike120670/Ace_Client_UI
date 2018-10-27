@@ -1,0 +1,41 @@
+﻿<div class="container margin-top-lg" ng-controller="CompanyDashboardController">
+    
+    <div class="row margin-bottom-lg">
+        <div class="col-md-8 col-sm-12">
+            <h3>Notifications</h3>
+            <hr />
+            <div id="notifications-grid"></div>
+        </div>
+        <div class="col-md-4 col-sm-12">&nbsp;</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>Transactions</h3>
+            <hr />
+            <div id="transactions-grid"></div>
+        </div>
+    </div>
+    <div class="row" id="contact-us">
+        <div class="col-sm-12">
+            <h3>Contact Us</h3>
+            <hr />
+        </div>
+        <div class="col-sm-12">
+            <form name="messageSender">
+                <div class="input-group" ng-class="{'has-error' : submitted && messageSender.messageText.$invalid }">
+                    <textarea ng-model="messageText" name="messageText" class="form-control custom-control" rows="3" required placeholder="Questions? Send us a message."></textarea>
+                    <span class="input-group-addon btn btn-primary" ng-disabled="messageSender.messageText.$invalid" ng-click="submitMessage()">Send</span>
+                </div>
+            </form>
+        </div>
+        <div class="alert alert-success marginTop" style="margin-top: 15px;" ng-show="showSuccessAlert">
+            <span><strong>Thank You.</strong>&nbsp;&nbsp;We will respond shortly</span>
+        </div>
+        <div class="alert alert-danger marginTop" style="margin-top: 15px;" ng-show="showErrorAlert">
+            <span><strong>Error!</strong>&nbsp;&nbsp;An error occurred while sending your message</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="spacer"></div>
+    </div>
+</div>

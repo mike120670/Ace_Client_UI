@@ -1,0 +1,52 @@
+﻿<div class="container margin-top-lg" ng-controller="PayBalanceDueController">
+    <div class="loading" ng-show="processing">
+        <div>Processing Payment....</div>
+    </div>
+    <h3>Pay Balance Due</h3>
+
+    <form name="payBalanceView" class="form-horizontal margin-top-lg">
+        <div class="col-md-9 col-sm-12">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <h4>Amount Due {{ formattedAmountDue }}</h4>
+                </div>
+            </div>
+            <div class="col-md-6" ng-show="!paymentReceived">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" ng-show="multipleInvoices">Invoice</label>
+                    <div class="col-sm-9" ng-show="singleInvoices"
+                         ng-model="itemInvoice">
+                    </div>
+                    <div class="col-sm-9" ng-show="multipleInvoices">
+                        <select id="selectInvoices" class="select225 form-control input-sm auto" name="Invoice"
+                                ng-model="itemInvoice"
+                                ng-options="itemInvoice.InvoiceNumber + ' - $' + common.addCommas(itemInvoice.Amount.toFixed(2))  for itemInvoice in Transactions_OBJ"
+                                ng-change="selectInvoice(itemInvoice.Amount,itemInvoice.InvoiceNumber,itemInvoice.TransactionType)">
+                            <option value="">-- Pay All Invoices --</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6" ng-show="!paymentReceived">
+                    <div class="form-group">
+                        <button type="button" class="btn btn-primary" ng-disabled="payBalanceView.$invalid || invalidPayment ||paymentReceived" ng-click="submitPayment(Payment)">
+                            Submit
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-6 alert alert-success" ng-show="paymentReceived">
+                    Thank you. We received your payment.
+                </div>
+            </div>
+
+            <div class="row paddingTop15">
+                <div class="col-md-12">
+                    <span class="alert alert-success" ng-show="invalidPayment">
+                        The invoice {{InvoiceNumber}} has been paid ${{common.addCommas(PaymentPerInvoice.toFixed(2))}}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,17 @@
+﻿<div class="container margin-top-lg" ng-controller="RecurringController">
+        
+
+
+    <div class="row alert alert-success" ng-show="showSuccescAlert">
+        <span><strong>Success</strong>&nbsp;New Parker successfully added.</span>
+    </div>
+    <div class="row alert alert-danger" ng-show="showErrorAlert">
+        <span><strong>Error</strong>&nbsp;An error occurred while processing.</span>
+    </div>
+</div>
+<script type="text/javascript">
+
+    $(function() {
+        $('.phone_us').mask('000-000-0000');
+    });
+</script>

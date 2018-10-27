@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewBag.Title = "PayBalanceDue";
+}
+
+<script src="/Scripts/moment.js"></script>
+
+<div class="col-md-9 col-sm-12">
+    <div class="container margin-top-lg" ng-controller="PayBalanceDueController">
+        <div class="row">
+            <form class="form-horizontal">
+                <fieldset>
+
+                    <!-- Form Name -->
+                    <legend>Request Validations</legend>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="textinput">Date:</label>  
+                        <div class="col-md-9">
+                            <input id="textinput" name="textinput" type="text" placeholder="placeholder" class="form-control input-md" required="">
+    
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="textinput">Name:</label>  
+                        <div class="col-md-9">
+                            <input id="textinput" name="textinput" type="text" placeholder="placeholder" class="form-control input-md" required="">
+    
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="textinput">Address:</label>  
+                        <div class="col-md-9">
+                            <input id="textinput" name="textinput" type="text" placeholder="placeholder" class="form-control input-md">
+    
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="textinput">Suite#</label>  
+                        <div class="col-md-9">
+                            <input id="textinput" name="textinput" type="text" placeholder="placeholder" class="form-control input-md">
+    
+                        </div>
+                    </div>
+
+                    <!-- Text input-->
+                    <div class="form-group">
+                        <label class="col-md-3 control-label" for="textinput">Contact Name</label>  
+                        <div class="col-md-3">
+                            <input id="textinput" name="textinput" type="text" placeholder="placeholder" class="form-control input-md">
+                        </div>
+                        <label class="col-md-3 control-label" for="textinput">Phone</label>
+                        <div class="col-md-3">
+                            <input id="textinput" name="textinput" type="text" placeholder="placeholder" class="form-control input-md">
+                        </div>
+                    </div>
+                </fieldset>
+
+
+            </form>
+
+        </div>
+        
+        <!-- Validations -->
+        <div class="row">
+            <br/><br/>
+            <table class="width600">
+                <tr>
+                    <th class="center tableHeaders">Qty</th>
+                    <th class="center tableHeaders">Validation Type</th>
+                    <th class="center tableHeaders">Rate</th>
+                    <th class="center tableHeaders">Tax</th>
+                    <th class="center tableHeaders">Sub Total</th>
+                </tr>
+                <tr>
+                    <td class="td50 center"><input type="text" class="input60" name="qty"/></td>
+                    <td class="td150">15 Minute</td>
+                    <td class="td50 right">$2.00</td>
+                    <td class="td50 right">$0.50</td>
+                    <td class="td50 right">$50.00</td>
+                </tr>
+                <tr>
+                    <td class="td50 center"><input type="text" class="input60" name="qty"/></td>
+                    <td>15 Minute</td>
+                    <td class="right">$2.00</td>
+                    <td class="right">$0.50</td>
+                    <td class="right">$50.00</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+

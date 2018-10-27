@@ -1,0 +1,39 @@
+﻿<ul class="nav qq nav-stacked xx">
+    <li class="ayx">Account Management</li>
+
+    <li class="qp">
+        <a href="#" ng-click="funcSwitchPages(0)">Notifications/Transactions</a>
+    </li>
+
+    <li class="qp">
+        <a href="#" ng-click="funcSwitchPages(1)">Pay Balance Due</a>
+    </li>
+
+    <li class="qp">
+        <a href="#" ng-click="funcSwitchPages(100)">Pay Balance Due Form</a>
+    </li>
+
+    <li class="qp">
+        <a href="#" ng-click="funcSwitchPages(101)">Validations</a>
+    </li>
+
+    <li class="qp">
+        <a class="qn active" href='@Url.Action("GetCustomerById", "Account", new {customerId=ViewData["userId"]})' target="_self">Update Profile</a>
+    </li>
+
+    <li class="ayx topbottom15">Parking Management</li>
+
+    <li class="qp">
+        <a class="qn" href="/Lot/Search" target="_self">Request Different Lot</a>
+    </li>
+
+    <li class="qp">
+        <a class="qn" href="#" ng-click="funcSwitchPages(3)" target="_self">Lost Access Card</a>
+    </li>
+    <li class="qp">
+        <a class="qn" href="#" ng-click="funcSwitchPages(4)" target="_self">Terminate Monthly Parking</a>
+    </li>
+    <li class="qp">
+        <a class="qn" href="#" ng-click="funcSwitchPages(5)" target="_self">Refer a Friend</a>
+    </li>
+</ul>

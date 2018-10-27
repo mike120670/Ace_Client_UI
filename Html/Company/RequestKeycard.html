@@ -1,0 +1,106 @@
+﻿<div class="section" ng-controller="KeycardController">
+    <div class="loading" ng-show="processing">
+        <div>Processing....</div>
+    </div>
+
+    <div class="container">
+        <h2>Request New Keycard</h2>
+        <hr>
+        <form name="KeycardOrder" class="form-horizontal" ng-submit="submitForm(KeycardOrder.$valid)" novalidate="">
+            <div class="form-group row">
+                <label for="date" class="col-sm-2">Date</label>
+                <div class="col-sm-3">
+                    <input id="date" class="form-control input-group-lg reg_name" type="text" name="date"
+                           ng-model="TodaysDate" readonly
+                           required/>
+                </div>
+                <label class="col-md-2 control-label" for="company">Company</label>
+                <div class="col-md-5">
+                    <input id="company" class="form-control input-group-lg reg_name" type="text" name="company"
+                           ng-model="CompanyName" readonly
+                           required/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="firstname" class="col-sm-2">First Name</label>
+                <div class="col-sm-3">
+                    <input id="firstname" class="form-control input-group-lg reg_name" type="text" name="firstname"
+                           ng-model="FirstName" required/>
+                </div>
+                <label for="lastname" class="col-sm-2">Last Name</label>
+                <div class="col-sm-5">
+                    <input id="lastname" class="form-control input-group-lg reg_name" type="text" name="lastname"
+                           ng-model="LastName" required/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="description" class="col-sm-2 col-form-label">Description</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control"
+                           ng-model="Description" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-2 control-label" for="reason">Reason</label>
+                <div class="col-md-3">
+                    <select id="reason" name="reason" class="form-control" required
+                            ng-model="ReasonId"
+                            ng-change="adjustKeycardData($index)"
+                            ng-options="k.KeycardId as k.Reason for k in KeyCardInformation">
+                        <option value="">-- Select Reason --</option>
+                    </select>
+                </div>
+                <label class="col-md-2 control-label" for="status">Status</label>
+                <div class="col-md-5">
+                    <input type="text" class="form-control" id="status"
+                           ng-model="Status" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-2 control-label" for="rate">Rate</label>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" id="rate"
+                           ng-model="Rate" real-time-currency required readonly/>
+                </div>
+                <label class="col-md-2 control-label" for="rate">Tax</label>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" id="tax"
+                           ng-model="Tax" real-time-currency required readonly/>
+                </div>
+                <label class="col-md-2 control-label" for="total">Total</label>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" id="total"
+                           ng-model="Total" real-time-currency required readonly/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="message" class="col-sm-2 col-form-label">Message</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="message"
+                           ng-model="KeycardMessage"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-4 col-md-offset-4">
+                    <button type="submit" class="btn btn-primary" ng-disabled="!KeycardOrder.$valid">Submit</button>
+                    &nbsp;
+                    <button class="btn btn-default" ng-click="ResetForm()">Cancel</button>
+                </div>
+            </div>
+            <div class="form-group row" ng-show="showSuccessAlert">
+                <div class="col-md-8">
+                    <div class="alert alert-success">
+                        <span><strong>Success!</strong>&nbsp;Your keycard request has been submitted</span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row" ng-show="showErrorAlert">
+                <div class="col-md-8">
+                    <div class="alert alert-danger">
+                        <span><strong>Error!</strong>&nbsp;An error has occurred.</span>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

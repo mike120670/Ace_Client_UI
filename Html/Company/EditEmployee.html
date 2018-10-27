@@ -1,0 +1,76 @@
+﻿<div class="container" ng-controller="EditEmployeeController">
+    <h2>Edit/Change Employee Info</h2>
+    <hr>
+    <form name="Employee" ng-submit="submitForm(Employee.$valid)" novalidate="">
+        <div class="form-group row">
+            <label for="firstname" class="col-sm-2">First Name</label>
+                <div class="col-sm-2">
+                    <input id="firstname" class="form-control input-group-lg reg_name" type="text" name="firstname"
+                           required
+                           ng-model="FirstName"/>                  
+                </div>
+                <label for="lastname" class="col-sm-2">Last Name</label>
+                <div class="col-sm-2">
+                    <input id="lastname" class="form-control input-group-lg reg_name" type="text" name="lastname"
+                           required
+                           ng-model="LastName"/>                    
+                </div>
+                <div class="col-sm-4">&nbsp;</div>
+        </div> 
+        <div class="form-group row">
+            <label for="cardNo" class="col-sm-2">Card No.</label>
+                <div class="col-sm-2">
+                <input id="cardNo" class="form-control input-group-lg reg_name" type="text" name="cardNo"
+                       ng-model="CardNumber"
+                       placeholder="Card #"/>                  
+                </div>
+                <label for="stallNo" class="col-sm-2">Stall No.</label>
+                <div class="col-sm-2">
+                    <input id="stallNo" class="form-control input-group-lg reg_name" type="text" name="stallNo"
+                           ng-model="StallNumber"
+                           placeholder="Stall #"/>                  
+                </div>
+                <div class="col-sm-4">&nbsp;</div>
+        </div> 
+        <div class="form-group row">
+            <label for="Description" class="col-sm-2">Description</label>
+                <div class="col-sm-2">
+                <input id="Description" class="form-control input-group-lg reg_name" type="text" name="Description"
+                       ng-model="Description"
+                       placeholder="Description"/>                  
+                </div>
+            <label class="col-md-2 control-label" for="Payment">Payment</label>
+                <div class="col-md-2">
+                    <select id="Payment" name="Payment" ng-model="ParkerPayType" class="form-control" 
+                            ng-change="checkParkerPayType()"
+                            ng-options="a.value as a.name for a in ParkerPayTypes">
+                        <option value="-">Select One</option>
+                    </select>
+                </div>   
+                <div class="col-sm-4">&nbsp;</div>                
+        </div>
+        <div class="form-group row" ng-show="IsParkerPayTypeBoth">
+            <div class="col-sm-4">&nbsp;</div>
+            <label class="col-md-2 control-label" for="CompanyPaid">Company % Paid</label>
+                <div class="col-md-2">
+                    <input id="CompanyPaid" class="form-control input-group-lg reg_name" type="text" name="CompanyPaid" 
+                           ng-model="CompanyPaid"
+                           title="Enter Company Paid"
+                           placeholder="Company Paid"/>
+                </div>   
+                <div class="col-sm-4">&nbsp;</div>                
+        </div>         
+        <div class="form-group row">
+            <div class="col-sm-4 btn-group">
+                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="submit" class="btn btn-default" ng-click="ToggleState(!ShowTerminationDate)">Terminate</button>
+            </div>
+            <label for="TerminationDate" class="col-sm-2" ng-show="ShowTerminationDate">Term Date</label>
+            <div class="col-sm-2" ng-show="ShowTerminationDate">
+                <input id="TerminationDate" class="form-control input-group-lg reg_name" type="text" name="TerminationDate"
+                       ng-model="TerminationDate" />                  
+            </div>
+            <div class="col-sm-7" ng-show="ShowTerminationDate">&nbsp;</div>
+        </div>
+    </form>
+</div>

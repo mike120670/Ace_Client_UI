@@ -1,0 +1,69 @@
+﻿<div class="container margin-top-lg">
+    <div class="row margin-bottom-lg">
+        <div class="col-md-8 col-sm-12">
+            <h3>Notifications</h3>
+
+            <hr />
+            <div id="notifications-grid"></div>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <div class="panel panel-primary quick-actions-panel">
+                <div class="panel-heading">Parking Information</div>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-sm-8 no-right-padding">Account #:</div>
+                            <div class="col-sm-4">{{selected.AccountNumber}}</div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-sm-8 no-right-padding">Current Balance:</div>
+                            <div class="col-sm-4 right">{{selected.Balance | currency}}</div>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col-sm-12">Parking Location:</div>
+                            <div class="col-sm-12">
+                                <select class="select-full-width list-group-select"
+                                        ng-model="selected"
+                                        ng-change="loadLotData(selected.LotNumber)"
+                                        ng-options="result as result.Description for result in customerLots track by result.LotNumber"></select>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <h3>Transactions</h3>
+            <hr />
+            <div id="transactions-grid"></div>
+        </div>
+    </div>
+    <div class="row" id="contact-us">
+        <div class="col-sm-12">
+            <h3>Contact Us</h3>
+            <hr />
+        </div>
+        <div class="col-sm-12">
+            <div class="input-group">
+                <textarea ng-model="messageText" class="form-control custom-control" rows="3" placeholder="Questions? Send us a message."></textarea>
+                <span class="input-group-addon btn btn-primary" ng-click="postMessage()">Send</span>
+            </div>
+        </div>
+        <div class="col-sm-12 alert alert-success paddingTop15" ng-show="showSuccessAlert">
+            <span><strong>Success!</strong>&nbsp; We have received your message and will respond shortly.</span>
+        </div>
+        <div class="col-sm-12 alert alert-danger paddingTop15" ng-show="showErrorAlert">
+            <span><strong>Error!</strong>&nbsp; An error occurred while sending the message.</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="spacer"></div>
+    </div>
+</div>

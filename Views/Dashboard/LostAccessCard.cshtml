@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "LostAccessCard";
+}
+
+<div class="col-md-9 col-sm-12" ng-controller="DashboardController">
+    <h3>Lost Access Card</h3>
+
+    <div class="section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2 class="center">Request New Access Card</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="col-md-12">
+                        <form class="form-horizontal" role="form" ng-submit="addNotification('Lost Access Card')">
+                            <div class="form-group">
+                                <div class="col-md-4">
+                                    <label for="AccountNumber" class="control-label">Account #</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <input type="text" class="form-control" id="AccountNumber" readonly placeholder="Account #" value="{{ selected.AccountNumber }}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-4">
+                                    <label for="EmailAddress" class="control-label">Email</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <input type="email" class="form-control" id="EmailAddress" readonly placeholder="Email" value="{{ selected.EmailAddress }}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-4 col-sm-7">
+                                    <button submit class="btn btn-primary">Submit</button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-11 alert alert-success" ng-show="showSuccessAlert">
+                                    <span>We will contact you shortly.</span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+

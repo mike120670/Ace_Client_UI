@@ -1,0 +1,203 @@
+﻿<div class="container margin-top-lg" ng-controller="PaymentDueController">
+    <div class="loading" ng-show="processing">
+        <div>Processing Payment....</div>
+    </div>
+
+    <h3>Pay Balance Due</h3>
+
+    <div class="row">
+        <div class="col-sm-5" style="vertical-align: top">
+            <div class="col-md-12 col-sm-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Parking Information</div>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-4 no-right-padding">Customer:</div>
+                                <div class="col-sm-8">
+                                    {{FullName}} <span>{{EmailAddress}}</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-4 no-right-padding">Account #:</div>
+                                <div class="col-sm-8">{{ParkerId}}</div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <div class="col-sm-12">Parking Location:</div>
+                                <div class="col-sm-12">{{LotLocation}}</div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row" ng-show="!showMany">
+                                <div class="col-sm-6 no-right-padding">Amount Due:</div>
+                                <div class="col-sm-6">{{ AmountDue }}</div>                                
+                            </div>
+                            <div class="row" ng-show="showMany">
+                                <div class="col-sm-12 no-right-padding">Amount Due:</div>
+                                <div class="col-sm-12">
+                                    <select id="selectInvoices" class="select225 form-control input-sm auto" name="Invoice"
+                                            ng-model="itemInvoice"
+                                            ng-options="itemInvoice.InvoiceNumber + ' - ' + itemInvoice.Balance for itemInvoice in Balances"
+                                            ng-change="selectInvoice(itemInvoice.InvoiceNumber, itemInvoice.Balance)">
+                                        <option value="">-- Pay All Invoices --</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-7">
+            <form class="form-horizontal" name="Payment" ng-submit="submitForm(Payment.$valid)" novalidate>
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-5 control-label" for="ccname">Credit Card Name</label>
+                    <div class="col-md-6" ng-class="{'submitted': submitted}">
+                        <input id="ccname" name="creditCardName" type="text"
+                               ng-model="CreditCardName"
+                               class="form-control"
+                               required>
+
+                    </div>
+                </div>
+
+                <!-- Select Basic -->
+                <div class="form-group">
+                    <label class="col-md-5 control-label" for="ccType">Credit Card Type</label>
+                    <div class="col-md-6" ng-class="{'submitted': submitted}">
+                        <select class="form-control" name="CreditCardType" id="ccType"
+                                ng-model="CreditCardType"
+                                ng-options="cc.value as cc.name for cc in CreditCardTypes"
+                                required>
+                            <option value="" selected>-- Select a Card--</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-5 control-label" for="ccNumber">Credit Card Number</label>
+                    <div class="col-md-6" ng-class="{'submitted': submitted}">
+                        <input id="ccNumber" name="creditCardNumber" type="text"
+                               class="form-control" ng-model="CreditCardNumber"
+                               required>
+
+                    </div>
+                </div>
+
+                <!-- Select Basic -->
+                <div class="form-group">
+                    <label class="col-md-5 control-label" for="ccExpMonth">Expiration Month</label>
+                    <div class="col-md-6" ng-class="{'submitted': submitted}">
+                        <select id="ccExpMonth" name="selectbasic" class="form-control"
+                                ng-model="CreditCardMonth"
+                                ng-change="onMonthChanged(CreditCardMonth)"
+                                ng-options="m.value as m.name for m in Months"
+                                required>
+                            <option value="" selected="">-- Select Month --</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Select Basic -->
+                <div class="form-group">
+                    <label class="col-md-5 control-label" for="ccExpYear">Expiration Year</label>
+                    <div class="col-md-6" ng-class="{'submitted': submitted && !isValidExpiration}">
+                        <select id="ccExpYear" name="CreditCardYear" class="form-control"
+                                ng-model="CreditCardYear"
+                                ng-change="onYearChanged(CreditCardYear)"
+                                ng-options="m.value as m.name for m in Years"
+                                required>
+                            <option value="" selected="">-- Select Year --</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-5 control-label" for="ccCVV">CVV</label>
+                    <div class="col-md-6" ng-class="{'submitted': submitted}">
+                        <input id="ccCVV" name="textinput" type="text" class="form-control"
+                               ng-model="CVV"
+                               required>
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-5 control-label" for="accountNumber">Amount Due</label>
+                    <div class="col-md-6" ng-class="{'submitted': submitted}">
+                        <input id="accountNumber" name="textinput" type="text"
+                               placeholder="Amount Due" ng-model="AmountDue" class="form-control right" readonly required>
+                    </div>
+                </div>
+
+                <!-- Not needed yet. We'll do this after deployment
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="routingNumber">Routing #</label>
+                    <div class="col-md-4">
+                        <input id="routingNumber" name="textinput" type="text" placeholder="placeholder" class="form-control input-md" required="">
+                    </div>
+                </div>
+                //-->
+
+                <!-- Multiple Checkboxes //-->
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <div class="checkbox">
+                            <label for="recurring">
+                                <input type="checkbox" name="checkboxes" id="recurring" ng-model="recurring" ng-true-value="1" ng-false-value="0">
+                                Enable automatic monthly payments
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Button -->
+                <div class="form-group" ng-hide="hideSubmitButton">
+                    <div class="col-md-12">
+                        <div class="col-md-4 offset-md-4">
+                            <button type="submit" id="singlebutton" name="singlebutton" class="btn btn-primary"
+                                    ng-disabled="Payment.$invalid || isValidExpiration === false"
+                                    ng-click="submitted=true">
+                                Process
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="row alert alert-success" ng-show="showSuccessAlert">
+        <span><strong>Success!</strong> Your payment has been successfully processed.</span>
+    </div>
+    <div class="row alert alert-danger" ng-show="showErrorAlert">
+        <span><strong>Error!</strong> An error occurred whie processing your report.</span>
+    </div>
+</div>
+<script type="text/javascript">
+
+    $(function() {
+        var cardTypeSelector = '#ccType';
+        var cardNumberSelector = '#ccNumber';
+
+        $('.phone_us').mask('000-000-0000');
+        $(cardNumberSelector).prop('disabled', $(cardTypeSelector).val() === '');
+
+        $(cardTypeSelector).on('change', function() {
+            var ccType = $(cardTypeSelector).val();
+            var mask = (ccType === 'Amex')
+                ? '0000 000000 00000'
+                : '0000 0000 0000 0000';
+
+            $(cardNumberSelector).prop('disabled', ccType === '');
+            $(cardNumberSelector).mask(mask);
+        });
+    });
+</script>

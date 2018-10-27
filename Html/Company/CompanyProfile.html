@@ -1,0 +1,147 @@
+﻿<div class="section" ng-controller="CompanyProfileController">
+    <div class="container">
+        <h2>Edit Company Profile</h2>
+        <hr>
+        <form name="companyForm" ng-submit="submitForm(companyForm.$valid)" novalidate>
+            <div class="form-group row alert alert-success" ng-show="showSuccessAlert">
+                <span><strong>Thank You.</strong> Your profile has been successfully updated.</span>
+            </div>
+            <div class="form-group row">
+                <label for="companyName" class="col-md-3 col-form-label">Company Name</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control maxWidth" id="companyName" readonly ng-model="Company.CompanyName">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="companyName" class="col-md-3 col-form-label">DBA</label>
+                <div class="col-md-9">
+                    <input type="text" class="form-control maxWidth" id="companyName" ng-model="Company.DBA">
+                </div>
+            </div>
+            <hr class="darkGrey" />
+            <div class="form-group row">
+                <label for="firstname" class="col-sm-3">First Name</label>
+                <div class="col-sm-3">
+                    <input id="firstname" class="form-control input-group-lg reg_name" type="text" name="firstname"
+                           ng-model="Company.FirstName"
+                           title="Enter first name"/>
+                </div>
+                <label for="lastname" class="col-sm-2">Last Name</label>
+                <div class="col-sm-4">
+                    <input id="lastname" class="form-control input-group-lg reg_name" type="text" name="lastname"
+                           ng-model="Company.LastName"
+                           title="Enter last name"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputEmail3" class="col-sm-3 col-form-label">Email Address</label>
+                <div class="col-sm-9">
+                    <input type="email" class="form-control maxWidth" id="inputEmail3" readonly ng-model="Company.EmailAddress">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="companyAddressLine1" class="col-sm-3 col-form-label">Company Address Line 1</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="companyAddressLine1" ng-model="Company.CompanyAddress">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="companyAddressLine2" class="col-sm-3 col-form-label">Suite #</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="companyAddressLine2" ng-model="Company.CompanyAddressLine">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="companyCity" class="col-sm-3">City</label>
+                <div class="col-sm-3">
+                    <input id="companyCity" class="form-control input-group-lg reg_name" type="text" name="companyCity"
+                           ng-model="Company.CompanyCity"
+                           title="Enter City"/>
+                </div>
+                <label for="companyState" class="col-sm-2">State</label>
+                <div class="col-sm-4">
+                    <select class="form-control" id="companyState" name="companyState" ng-model="Company.CompanyState"
+                            ng-options="a.value as a.name for a in states">
+                        <option value="" selected="selected">Please Select a State</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="companyZip" class="col-sm-3">Zip Code</label>
+                <div class="col-sm-3">
+                    <input id="companyZip" class="form-control input-group-lg reg_name" type="text" name="zipCode"
+                           ng-model="Company.CompanyZipCode"
+                           title="Enter Zip Code"/>
+                </div>
+                <label for="companyPhone" class="col-sm-2">Phone</label>
+                <div class="col-sm-4">
+                    <input id="companyPhone" class="form-control input-group-lg reg_name phone_us" type="text" name="companyPhone"
+                           ng-model="Company.CompanyPhone"
+                           title="Enter Phone"
+                           placeholder="Phone"/>
+                </div>
+            </div>
+            <hr class="darkGrey" />
+            <div class="form-group row">
+                <label for="firstname" class="col-sm-3">First Name</label>
+                <div class="col-sm-3">
+                    <input id="firstname" class="form-control input-group-lg reg_name" type="text" name="firstname"
+                           ng-model="Company.BillingFirstName"
+                           title="Enter first name" />
+                </div>
+                <label for="lastname" class="col-sm-2">Last Name</label>
+                <div class="col-sm-4">
+                    <input id="lastname" class="form-control input-group-lg reg_name" type="text" name="lastname"
+                           ng-model="Company.BillingLastName"
+                           title="Enter last name" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="billingAddressLine1" class="col-sm-3 col-form-label">Billing Address Line 1</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="billingAddressLine1" ng-model="Company.BillingAddress">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="billingAddressLine2" class="col-sm-3 col-form-label">Billing Suite #</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="billingAddressLine2" ng-model="Company.BillingAddressLine">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="city" class="col-sm-3">City</label>
+                <div class="col-sm-3">
+                    <input id="city" class="form-control input-group-lg reg_name" type="text" name="city"
+                           ng-model="Company.BillingCity"
+                           title="Enter City"/>
+                </div>
+                <label for="companyState" class="col-sm-2">State</label>
+                <div class="col-sm-4">
+                    <select class="form-control" id="companyState" name="companyState" ng-model="Company.BillingState"
+                            ng-options="a.value as a.name for a in states">
+                        <option value="" selected="selected">Please Select a State</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="zip" class="col-sm-3">Zip Code</label>
+                <div class="col-sm-3">
+                    <input id="zip" class="form-control input-group-lg reg_name" type="text" name="zipCode"
+                           ng-model="Company.BillingZipCode"
+                           title="Enter Zip Code"/>
+                </div>
+                <label for="phone" class="col-sm-2">Phone</label>
+                <div class="col-sm-4">
+                    <input id="phone" class="form-control input-group-lg reg_name phone_us" type="text" name="phone"
+                           ng-model="Company.BillingPhone"
+                           title="Enter Phone"/>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-9">
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </div>
+            </div>
+        </form>
+    </div>    
+</div>

@@ -1,0 +1,53 @@
+﻿<div class="col-md-9 col-sm-12" ng-controller="DashboardController">
+    <h3>Refer a Friend</h3>
+
+    <div class="section">
+        <div class="container">
+            @*<div class="row">
+                <div class="col-md-6">
+                    <h2 class="center">Refer a Friend</h2>
+                </div>
+            </div>*@
+            <div class="row">
+                <div class="col-md-10">
+                    <div class="col-md-12 marginTop15">
+                        <span class="red superscript">* indicate required fields</span>
+                        <form class="form-horizontal" name="userForm" role="form" ng-submit="sendEmail(userForm.$valid)">
+                            <div class="form-group">
+                                <div class="col-md-4">
+                                    <label for="EmailAddress" class="control-label">Email<span class="red superscript">*</span></label>
+                                </div>
+                                <div class="col-md-7" ng-class="{ 'has-error' : userForm.EmailAddress.$invalid && !userForm.EmailAddress.$pristine }">
+                                    <input type="text" class="form-control" name="EmailAddress" id="EmailAddress" required placeholder="EmailAddress" ng-model="userForm.EmailAddress">
+                                    <p ng-show="userForm.EmailAddress.$invalid && !userForm.EmailAddress.$pristine" class="help-block">A valid email address is required.</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-4">
+                                    <label for="Message" class="control-label">Message<span class="red superscript">*</span></label>
+                                </div>
+                                <div class="col-md-7" ng-class="{ 'has-error' : userForm.EmailBody.$invalid && !userForm.EmailBody.$pristine }">
+                                    <textarea rows="5" class="form-control" name="EmailBody" id="EmailBody" required placeholder="Message to send to user" ng-model="userForm.EmailBody"></textarea>
+                                    <p ng-show="userForm.EmailBody.$invalid && !userForm.EmailBody.$pristine" class="help-block">A valid email address is required.</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-4 col-sm-7">
+                                    <button type="submit" class="btn btn-primary">Send Email</button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-11 alert alert-success" ng-show="showEmailAlert">
+                                    <span>Your email has been sent.</span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+

@@ -1,0 +1,27 @@
+﻿@using Microsoft.AspNet.Identity
+@{
+    var welcomeMessage = "Hello " + User.Identity.GetUserName() + "!";
+}
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+    @Html.AntiForgeryToken()
+
+    <ul class="nav navbar-nav navbar-right-mod">
+        <li><span class="btn btn-link white" style="margin-top: 10px">@welcomeMessage</span></li>
+        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log Off</a></li>
+    </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right-mod">
+        @*<li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "btn btn-link" })</li>*@
+        <li>
+            @* TODO: Figure out why this action link will not redirect. this matches what is on the search page. *@
+            @*@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "btn btn-link btn-lg white" })*@
+            <a href="/Account/Login" target="_self" class="btn btn-link btn-lg white">Log in</a>
+        </li>
+    </ul>
+}

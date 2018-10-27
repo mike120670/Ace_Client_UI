@@ -1,0 +1,80 @@
+﻿
+@{
+    ViewBag.Title = "PayBalanceDue";
+}
+
+<script src="/Scripts/moment.js"></script>
+
+<div class="col-md-9 col-sm-12">
+    <div class="container margin-top-lg" ng-controller="PayBalanceDueController">
+        <h3>Pay Balance Due</h3>
+        @*<h4>$scope.Request_customerId={{Request_customerId}}</h4>
+        <h4>$scope.Request_lotNumber={{Request_lotNumber}}</h4>*@
+
+        <form name="payBalanceView" class="form-horizontal margin-top-lg">
+            <div class="col-md-9 col-sm-12">
+                <div class="col-md-12">
+                    <div class="form-group brdbot">
+                        <h4>Amount Due ${{AmountDue}}</h4>
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <div class="controls col-sm-9">
+
+                                <label class="radio" for="radio1">
+                                    <input type="radio" value="partialpayment" id="radio1" name="radio1" ng-model="selected" ng-change="newValue(value)">Partial Payment
+                                </label>
+                                <label class="radio" for="radio2">
+                                    <input type="radio" value="paybalance" id="radio2" name="radio2" ng-model="selected" ng-change="newValue(value)">Pay Balance
+                                </label>
+                                <span class="error"></span>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-md-6" ng-show="show">
+                        <div class="form-group">
+
+                            <div class="controls col-sm-9">
+                                <input class="form-control k-textbox" ng-model="Payment" required ng-pattern="matchPartialPayment" ng-keypress="enterPayment($event)">
+                                <span class="label label-danger" ng-show="invalidPayment">
+                                    Amount Due is ${{AmountDue}}
+                                </span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-11 alert alert-success" ng-show="showSuccessAlert">
+                    <span>We will contact you shortly.</span>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary" ng-disabled="payBalanceView.$invalid || invalidPayment || paymentReceived" ng-click="submitPayment(Payment)">
+                                Submit
+                            </button>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-11 alert alert-success" ng-show="paymentReceived">
+                                <span>Thank you. We received your payment: {{TransactionId}}.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-md-11 alert alert-warning" ng-show="errorOccurred">
+                            <span>Payment not received.</span>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

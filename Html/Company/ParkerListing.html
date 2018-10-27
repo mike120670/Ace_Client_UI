@@ -1,0 +1,156 @@
+﻿
+<div class="container" ng-controller="ParkerListingController">
+    <h2>Parker Listing Export</h2>
+    <hr>
+    <form>
+        <div class="form-group row">
+            <label for="date" class="col-sm-2">&nbsp;</label>
+            <div class="col-sm-3">
+                <strong>Company:</strong> {{companyName}}
+            </div>
+            <div class="col-sm-1">
+                &nbsp;<!--<button id="Print">Print</button>-->
+            </div>
+            <div class="col-sm-6">
+                &nbsp;
+                <!--<button id="Export">Export</button>
+                <div my-shared-scope></div>-->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <!-- table-hover //-->
+                <table id="parkerListing" class="table table-bordered table-hover">
+                    <tr>
+                        <th class="center">
+                            <a ng-click="sortName='FirstName'; sortReverse = !sortReverse">
+                                <span ng-show="sortName == 'FirstName' && sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
+                                <span ng-show="sortName == 'FirstName' && !sortReverse" class="glyphicon glyphicon-triangle-top"></span>
+                                First Name
+                            </a>
+                        </th>
+                        <th class="center">
+                            <a ng-click="sortName='LastName'; sortReverse = !sortReverse">
+                                <span ng-show="sortName == 'LastName' && sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
+                                <span ng-show="sortName == 'LastName' && !sortReverse" class="glyphicon glyphicon-triangle-top"></span>
+                                Last Name
+                            </a>
+                        </th>
+                        <th class="center">
+                            <a ng-click="sortName='StallNumber'; sortReverse = !sortReverse">
+                                <span ng-show="sortName == 'StallNumber' && sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
+                                <span ng-show="sortName == 'StallNumber' && !sortReverse" class="glyphicon glyphicon-triangle-top"></span>
+                                Stall No
+                            </a>
+                        </th>
+                        <th class="center">
+                            <a ng-click="sortName='CardNumber'; sortReverse = !sortReverse">
+                                <span ng-show="sortName == 'CardNumber' && sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
+                                <span ng-show="sortName == 'CardNumber' && !sortReverse" class="glyphicon glyphicon-triangle-top"></span>
+                                Card No
+                            </a>
+                        </th>
+                        <th class="center">
+                            <a ng-click="sortName='Rate'; sortReverse = !sortReverse">
+                                <span ng-show="sortName == 'Rate' && sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
+                                <span ng-show="sortName == 'Rate' && !sortReverse" class="glyphicon glyphicon-triangle-top"></span>
+                                Rate
+                            </a>
+                        </th>
+                        <th class="center">
+                            <a ng-click="sortName='Description'; sortReverse = !sortReverse">
+                                <span ng-show="sortName == 'Description' && sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
+                                <span ng-show="sortName == 'Description' && !sortReverse" class="glyphicon glyphicon-triangle-top"></span>
+                                Description
+                            </a>
+                        </th>
+                        <th class="center">
+                            <a ng-click="sortName='ParkerPayType'; sortReverse = !sortReverse">
+                                <span ng-show="sortName == 'ParkerPayType' && sortReverse" class="glyphicon glyphicon-triangle-bottom"></span>
+                                <span ng-show="sortName == 'ParkerPayType' && !sortReverse" class="glyphicon glyphicon-triangle-top"></span>
+                                Payment
+                            </a>
+                        </th>
+                    </tr>
+                    <tbody>
+                        <tr ng-repeat="m in Parkers | orderBy:sortName:sortReverse">
+                            <td>{{m.FirstName}}</td>
+                            <td>{{m.LastName}}</td>
+                            <td class="width75">{{m.StallNumber}}</td>
+                            <td class="width75">{{m.CardNumber}}</td>
+                            <td class="right width75">{{m.Rate | currency}}</td>
+                            <td>{{m.Description}}</td>
+                            <td>{{m.ParkerPayType}}</td>
+
+                            <!-- <td><input type="button" ng-click="Remove($index)" value="Remove" /></td> //
+                            <td>&nbsp;</td>-->
+                        </tr>
+                    </tbody>
+
+                </table>
+
+            </div>
+        </div>
+
+    </form>
+
+    <form novalidate name="addUser" ng-submit="addUserToQueue()">
+        <div class="row">
+            <div class="col-md-12">
+                <h2> New Parker </h2>
+                <table id="dataTable" class="table table-bordered table-hover">
+                    <tr>
+                        <th class="center">First Name</th>
+                        <th class="center">Last Name</th>
+                        <th class="center">Email Address</th>
+                        <th class="center">Date</th>
+                    </tr>
+                    <tbody></tbody>
+                    <tfoot>
+                        <tr>
+                            <!--<td><input type="text" ng-model="NewLotNumber" class="maxTextboxSize" /></td>-->
+                            <td>
+                                <input type="text"
+                                       name="NewFirstName" class="form-control maxTextboxSize"
+                                       required ng-maxlength="32" ng-model="NewFirstName" />
+                            </td>
+                            <td>
+                                <input type="text"
+                                       name="NewLastName" class="form-control maxTextboxSize"
+                                       required ng-maxlength="32" ng-model="NewLastName" />
+                            </td>
+                            <td>
+                                <input type="text"
+                                       name="NewLastName" class="form-control maxTextboxSize"
+                                       required ng-maxlength="32" ng-model="NewEmailAddress" />
+                            </td>
+                            <td>
+                                <div class="form-group">
+                                    <div class="input-group date" id="datetimepicker1">
+                                        <input type="text" class="form-control" required
+                                               ng-model="NewDateEntered" data-date-time-picker />
+                                        <span class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td><input type="submit" class="btn btn-primary" value="Add" /></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </form>
+    <div class="row alert alert-success" ng-show="showSuccessAlert">
+        <span><strong>Success</strong>&nbsp;New Parker Request Submitted.</span>
+    </div>
+    <div class="row alert alert-danger" ng-show="showErrorAlert">
+        <span><strong>Error</strong>&nbsp;An error occurred while processing.</span>
+    </div>
+
+    <br />
+    <br />
+    <br />
+
+</div>

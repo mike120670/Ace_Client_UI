@@ -1,0 +1,132 @@
+﻿<div class="container margin-top-lg" ng-controller="ValidationsController">
+    <div class="row">
+        <form name="ValidationOrder" class="form-horizontal" ng-submit="submitForm(ValidationOrder.$valid)" novalidate="" >
+            <fieldset>
+
+                <!-- Form Name -->
+                <legend>Request Validations</legend>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="date">Date:</label>
+                    <div class="col-md-9">
+                        <input id="date" name="textinput" type="text" class="form-control input-md"
+                               ng-model="TodaysDate" readonly
+                               required />
+
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="textinput">Name:</label>
+                    <div class="col-md-9">
+                        <input id="textinput" name="textinput" type="text" class="form-control input-md"
+                               ng-model="CompanyName"
+                               required />
+
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="address">Address:</label>
+                    <div class="col-md-9">
+                        <input id="address" name="textinput" type="text" class="form-control input-md"
+                               ng-model="Address"
+                               required />
+
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="addressline">Suite #:</label>
+                    <div class="col-md-9">
+                        <input id="addressline" name="textinput" type="text" class="form-control input-md"
+                               ng-model="AddressLine" />
+
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="contactName">Contact Name:</label>
+                    <div class="col-md-3">
+                        <input id="contactName" name="textinput" type="text"
+                               ng-model="DailyContact"
+                               class="form-control input-md" />
+                    </div>
+                    <label class="col-md-3 control-label" for="phone">Phone:</label>
+                    <div class="col-md-3">
+                        <input id="phone" name="textinput" type="text"
+                               ng-model="Phone"
+                               class="form-control input-md phone_us" />
+                    </div>
+                </div>
+
+                <!-- Text input-->
+                <div class="form-group">
+                    <label class="col-md-3 control-label" for="addressline">Message:</label>
+                    <div class="col-md-9">
+                        <input id="Message" name="textinput" type="text" class="form-control input-md"
+                               ng-model="Message" />
+
+                    </div>
+                </div>
+
+                <!-- Validations -->
+                <div class="row">
+                    <br /><br />
+                    <table class="width600 dynamic">
+                        <tr>
+                            <th class="center tableHeaders">Qty</th>
+                            <th class="center tableHeaders">Validation Type</th>
+                            <th class="center tableHeaders">Rate</th>
+                            <th class="center tableHeaders">Tax</th>
+                            <th class="center tableHeaders">Sub Total</th>
+                        </tr>
+                        <tr class="validations" ng-repeat="x in Validations">
+                            <td class="td50 center"><input type="text" class="input60 qty right" name="qty" ng-model="x.Quantity" ng-blur="ChangeAmount(x.Quantity, $index)" only-digits />
+                            <td class="td150">{{ x.ValidationType }}</td>
+                            <td class="td50 right">{{ x.Rate | currency }}</td>
+                            <td class="td50 right">{{ x.Tax | currency }}</td>
+                            <td class="td50 right">{{ x.Amount | currency }}</td>
+                        </tr>
+                        <tr>
+                            <td>&nbsp;</td>
+                            <td class="bold">Subtotal:</td>
+                            <td class="td50 right">{{ RateSubTotal | currency  }}</td>
+                            <td class="td50 right">{{ TaxSubTotal | currency }}</td>
+                            <td class="td50 right">{{ SubTotal | currency }}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="td200">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                                &nbsp;
+                                <button class="btn btn-default" ng-click="ResetQuantities()">Cancel</button>
+                            </td>
+                            <td colspan="3">&nbsp;</td>
+                        </tr>
+                    </table>
+                    <br />
+                </div>
+                <div class="row alert alert-danger" ng-show="noValidationsSelected">
+                    <span><strong>Error!</strong>  You must select at least one validation type.</span>
+                </div>
+                <div class="row alert alert-success" ng-show="showSuccessAlert">
+                    <span><strong>Success!</strong>&nbsp;Your validation request has been submitted</span>
+                </div>
+                <div class="row alert alert-danger" ng-show="showErrorAlert">
+                    <span><strong>Error!</strong>  An error occurred while processing this request.</span>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+
+    $(function() {
+        $('.phone_us').mask('000-000-0000');
+    });
+</script>
