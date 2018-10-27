@@ -1,0 +1,159 @@
+﻿body {
+    background-color: #fff;
+    background: url(images/parking-multi-storey-car-park.jpg) 100% no-repeat;
+    /* Background image is centered vertically and horizontally at all times */
+    background-position: center center;
+    /* Background image doesn't tile */
+    background-repeat: no-repeat;
+    /* Background image is fixed in the viewport so that it doesn't move when 
+     the content's height is greater than the image's height */
+    background-attachment: fixed;
+    /* This is what makes the background image rescale based
+     on the container's size */
+    background-size: 100% cover;
+    height: auto;
+}
+.card-container.card {
+    max-width: 450px;
+    padding: 40px 40px;
+}
+/* Hid anchor link text in the negative zone..image will only diplay the, link will work*/
+ div a {
+    text-indent: -9999px;
+}
+.card-container1 {
+    max-width: 450px;
+    padding: 40px 40px;
+}
+
+.btn {
+    font-weight: 700;
+    height: 36px;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: default;
+}
+
+.btn-default {
+    
+}
+
+input, select, textarea {
+   max-width: 450px; 
+}
+
+h1 {
+    margin-top:0px !important;
+    margin-bottom: 35px !important;
+}
+
+.btn-primary {
+    color: #ffffff;
+    background-color: #2780e3 !important;
+    border-color: #2780e3 !important;
+}
+.btn-default {
+    background-color: #01a38a !important;
+    border-color: #4b7d74 !important;
+}
+/*/
+\*\  Card component
+/*/
+.card {
+    background-color: rgba(169, 169, 169, 0.9);
+    /* just in case there no content*/
+    padding: 20px 25px 30px;
+    margin: 0 auto 25px;
+    margin-top: 10vh;
+    /* shadows and rounded borders */
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.card1 {
+    padding: 20px 25px 30px;
+    margin: 0 auto 25px;
+}
+
+.validation-block,
+.text-block {
+    display: block;
+    color: #ff0000;     /* #404040 */
+    line-height: 2;
+    margin-bottom: 10px;
+    font-size: 15px;
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.validation-summary-errors ul {
+    list-style-type: none;
+}
+
+.form-input {
+    direction: ltr;
+    height: 44px;
+    font-size: 16px;
+}
+
+.form-signin input[type=email],
+.form-signin input[type=password],
+.form-signin input[type=text],
+.form-signin button {
+    width: 100%;
+    display: block;
+    margin-bottom: 10px;
+    z-index: 1;
+    position: relative;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.form-signin .form-control:focus {
+    border-color: rgb(104, 145, 162);
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(104, 145, 162);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgb(104, 145, 162);
+}
+
+.btn.btn-signin {
+    /*background-color: #4d90fe; */
+    background-color: rgb(104, 145, 162);
+    /* background-color: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
+    padding: 0px;
+    font-weight: 700;
+    font-size: 14px;
+    height: 36px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    border: none;
+    -o-transition: all 0.218s;
+    -moz-transition: all 0.218s;
+    -webkit-transition: all 0.218s;
+    transition: all 0.218s;
+}
+
+.btn.btn-signin:hover,
+.btn.btn-signin:active,
+.btn.btn-signin:focus {
+    background-color: rgb(12, 97, 33);
+}
+.checkbox {
+    padding-top:0px !important;
+    min-height:15px !important;
+}
+.checkbox > label > label {
+    padding-left:0px !important;
+}
