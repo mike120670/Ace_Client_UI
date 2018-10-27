@@ -1,2 +1,2 @@
 # ace_client_UI
-client side ace project
+client side of the ace project
